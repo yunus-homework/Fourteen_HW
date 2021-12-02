@@ -40,6 +40,43 @@ console.log(padString("hi", 7, "*"));
 console.log(padString("hello", 9, "*", true));
 console.log(padString("hello", 2));
 
+function isValidNumber(arg) {
+  if (typeof arg === "number") {
+    return true;
+  }
+  return false;
+}
+
+function paddString(str, strLength, symb, right = true) {
+  if (typeof str !== "string") {
+    return "str is not string";
+  }
+  if (!isValidNumber(strLength)) {
+    return "strLength is not string";
+  }
+  if (str.length >= strLength) {
+    return str.substring(0, strLength);
+  }
+  if (!symb || (typeof symb !== "string" && symb.length !== 1)) {
+    return "symb is not invaild";
+  }
+  if (typeof right !== "boolean") {
+    return "right is invalid";
+  }
+
+  let localString = "";
+
+  for (let i = str.length; i < strLength; i++) {
+    localString += symb;
+  }
+
+  return right ? str + localString : localString + str;
+}
+
+console.log(paddString("Alex", 10, "*"));
+console.log(paddString("Alex", 10, "*", false));
+console.log(paddString("Alexaaaa", 5, "*", false));
+console.log(padString("Hello", 2));
 // Вам нужно написать реализацию функции padString,
 // которая принимает 4 аргумента:
 
